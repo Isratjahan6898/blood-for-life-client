@@ -74,7 +74,7 @@ const Contact = () => {
   <select className="select select-gray-400 input input-bordered w-full max-w-xs">
 
 
-<option disabled selected>General Inquiry</option>
+<option  >General Inquiry</option>
 <option>Donation Support</option>
 <option>Feedback</option>
 <option>Partnership</option>

@@ -14,7 +14,7 @@ const Navbar = () => {
       <Link><p className="mr-[20px]" >Donation Request</p></Link>
 
       <Link to='/blog'><p className="mr-[20px]">Bolg</p></Link>
-      <Link><p className="mr-[20px]">Login</p></Link>
+      <Link to='/login'><p className="mr-[20px]">Login</p></Link>
       </ul>
     </div>
     <h1 className=" font-extrabold text-red-900 font-lato italic text-5xl">Blood4Life</h1>
@@ -24,7 +24,7 @@ const Navbar = () => {
       <Link><p className="mr-[20px]" >Donation Request</p></Link>
 
       <Link to='/blog'><p className="mr-[20px]">Bolg</p></Link>
-      <Link><p className="mr-[20px]">Login</p></Link>
+      <Link to='/login'><p className="mr-[20px]">Login</p></Link>
     </ul>
   </div>
   
