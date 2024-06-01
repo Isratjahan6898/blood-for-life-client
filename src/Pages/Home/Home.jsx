@@ -1,4 +1,5 @@
 import Banner from "./Banner/Banner";
+import Contact from "./Contact/Contact";
 import Featured from "./Featured/Featured";
 
 
@@ -8,6 +9,7 @@ const Home = () => {
            
           <Banner></Banner>
           <Featured></Featured>
+          <Contact></Contact>
           
         </div>
     );

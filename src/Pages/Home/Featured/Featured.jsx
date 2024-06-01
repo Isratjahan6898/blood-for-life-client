@@ -2,7 +2,7 @@
 
 const Featured = () => {
     return (
-        <div className="mt-[60px] mx-[70px] mb-[30px]">
+        <div className="mt-[60px] mx-[20px] lg:mx-[70px] mb-[30px]">
              <div className='text-center'>
                 <p className='text-red-500 mb-[20px]'>---Some Featured---</p>
                 <hr className='border-[2px]  ml-[80px] w-[300px] lg:ml-[420px] mb-[20px]' />
