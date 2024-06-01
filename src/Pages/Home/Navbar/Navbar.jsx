@@ -16,7 +16,7 @@ const Navbar = () => {
       <p><a>Login</a></p>
       </ul>
     </div>
-    <h1 className=" font-bold text-red-900 text-4xl">Blood4Life</h1>
+    <h1 className=" font-extrabold text-red-900 font-lato italic text-5xl">Blood4Life</h1>
   </div>
   <div className="navbar-end hidden lg:flex">
     <ul className="menu menu-horizontal text-white px-1">
