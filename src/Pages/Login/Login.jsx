@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 
@@ -5,6 +6,10 @@ const Login = () => {
     return (
         <div>
               <div className="my-[60px]">
+
+              <Helmet>
+          <title>Blood4Life || Login</title>
+          </Helmet>
           
 
 
