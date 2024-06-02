@@ -1,8 +1,80 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 
 
 const Register = () => {
+    const{createUser,updateUserProfile}=useAuth();
+    // console.log(createUser,updateUserProfile);
+    const navigate = useNavigate();
+
+    const handleSignUp= async e =>{
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const name = form.name.value;
+        const image = form.image.files[0];
+        const bloodGroup = form.bloodGroup.value;
+        const district = form.district.value;
+        const upazila = form.upazila.value;
+        const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
+
+        if (password !== confirmPassword) {
+            toast('Passwords do not match');
+            return;
+        }
+
+        const formData =new FormData()
+        formData.append('image', image)
+
+        
+       
+        // console.log(email,name,image,bloodGroup,district,upazila,password,confirmPassword);
+
+        try{
+
+            
+       
+
+        //upload img
+           const{ data }= await axios.post(`https://api.imgbb.com/1/upload/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,formData)
+            console.log(data.data.display_url);
+
+
+            //user registation
+
+            const result= await createUser(email,password);
+            console.log(result);
+
+            //update UserProfile
+
+            await updateUserProfile(name,data.data.display_url)
+            navigate('/');
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              
+
+
+
+
+        }
+        
+        catch(err)
+        {
+          console.log(err);
+        }
+    }
+
     return (
         <div>
             <Helmet>
@@ -15,8 +87,8 @@ const Register = () => {
                         <p className='text-sm text-gray-400'>Welcome to <span className=" font-extrabold text-red-900 font-lato italic text-2xl">Blood4Life</span></p>
                     </div>
                     <form
-                        noValidate=''
-                        action=''
+                    onSubmit={handleSignUp}
+                  
                         className='space-y-6 ng-untouched ng-pristine ng-valid'
                     >
                         <div className='space-y-4'>
@@ -66,7 +138,7 @@ const Register = () => {
                                 <label htmlFor='email' className='block mb-2 text-sm'>
                                     Blood Group
                                 </label>
-                                <select className="select select-primary w-full max-w-xs">
+                                <select name='bloodGroup' className="select select-primary w-full max-w-xs">
                                     
                                     <option>A+</option>
                                     <option>A-</option>
@@ -83,7 +155,7 @@ const Register = () => {
                                 <label htmlFor='email' className='block mb-2 text-sm'>
                                     Distict
                                 </label>
-                                <select className="select select-primary w-full max-w-xs">
+                                <select name='district' className="select select-primary w-full max-w-xs">
                                     
                                     <option>Dhaka</option>
                                     <option>Faridpur</option>
@@ -112,9 +184,9 @@ const Register = () => {
 
                             <div>
                                 <label htmlFor='email' className='block mb-2 text-sm'>
-                                    Upazial
+                                    Upazila
                                 </label>
-                                <select className="select select-primary w-full max-w-xs">
+                                <select name="upazila" className="select select-primary w-full max-w-xs">
                                     
                                     <option>Dhamrai</option>
                                     <option>Dohar </option>
@@ -148,8 +220,7 @@ const Register = () => {
                                 <input
                                     type='password'
                                     name='password'
-                                    autoComplete='new-password'
-                                    id='password'
+                                   
                                     required
                                     placeholder='*******'
                                     className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
@@ -164,9 +235,8 @@ const Register = () => {
                                 </div>
                                 <input
                                     type='password'
-                                    name='password'
-                                    autoComplete='new-password'
-                                    id='password'
+                                    name='confirmPassword'
+                                    
                                     required
                                     placeholder='*******'
                                     className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
