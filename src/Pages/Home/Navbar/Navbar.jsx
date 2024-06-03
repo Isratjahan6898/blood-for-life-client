@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const{user,logOut}= useAuth();
+  console.log(logOut);
   
 
   const handleLogOut = ()=>{
@@ -39,7 +40,7 @@ const Navbar = () => {
  </div>
  <ul  tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52" >
  <p className="mr-[20px]"> <button onClick={handleLogOut}  className='mx-[10px]'>LogOut</button></p>
- <Link><p className="mt-[16px] mr-[20px]">desboard</p></Link>
+ <Link to='/deshboard'><p className="mt-[16px] mr-[20px]">desboard</p></Link>
 
  </ul>
 
@@ -56,10 +57,10 @@ const Navbar = () => {
         
         </>
       }
-      {/* <Link to='/login'><p className="mr-[20px]">Login</p></Link> */}
+    
       </ul>
     </div>
-    <h1 className=" font-extrabold text-red-900 font-lato italic text-5xl">Blood4Life</h1>
+    <Link to='/'><h1 className=" font-extrabold text-red-900 font-lato italic text-5xl">Blood4Life</h1></Link>
   </div>
   <div className="navbar-end hidden lg:flex">
     <ul className="menu menu-horizontal text-white px-1">
@@ -79,7 +80,7 @@ const Navbar = () => {
  </div>
  <ul  tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52" >
  <p className="mr-[20px]"> <button onClick={handleLogOut}  className='mx-[10px]'>LogOut</button></p>
- <Link><p className="mt-[16px] mr-[20px]">desboard</p></Link>
+ <Link  to='/deshboard'><p className="mt-[16px] mr-[20px]">desboard</p></Link>
 
  </ul>
 

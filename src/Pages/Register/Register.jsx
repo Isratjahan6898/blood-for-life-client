@@ -76,201 +76,231 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <div className="my-[50px]">
             <Helmet>
                 <title>Blood4Life || signup</title>
             </Helmet>
-            <div className='flex justify-center items-center min-h-screen'>
-                <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
-                    <div className='mb-8 text-center'>
-                        <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-                        <p className='text-sm text-gray-400'>Welcome to <span className=" font-extrabold text-red-900 font-lato italic text-2xl">Blood4Life</span></p>
-                    </div>
-                    <form
-                    onSubmit={handleSignUp}
-                  
-                        className='space-y-6 ng-untouched ng-pristine ng-valid'
-                    >
-                        <div className='space-y-4'>
-                            <div>
-                                <label htmlFor='email' className='block mb-2 text-sm'>
-                                    Name
-                                </label>
-                                <input
-                                    type='text'
-                                    name='name'
-                                    id='name'
-                                    placeholder='Enter Your Name Here'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-                                    data-temp-mail-org='0'
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor='image' className='block mb-2 text-sm'>
-                                    Select Image:
-                                </label>
-                                <input
-                                    required
-                                    type='file'
-                                    id='image'
-                                    name='image'
-                                    accept='image/*'
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor='email' className='block mb-2 text-sm'>
-                                    Email address
-                                </label>
-                                <input
-                                    type='email'
-                                    name='email'
-                                    id='email'
-                                    required
-                                    placeholder='Enter Your Email Here'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-                                    data-temp-mail-org='0'
-                                />
-                            </div>
+              
 
-                            {/* blood */}
 
-                            <div>
-                                <label htmlFor='email' className='block mb-2 text-sm'>
-                                    Blood Group
-                                </label>
-                                <select name='bloodGroup' className="select select-primary w-full max-w-xs">
-                                    
-                                    <option>A+</option>
-                                    <option>A-</option>
-                                    <option>B+</option>
-                                    <option>B-</option>
-                                    <option>AB+</option>
-                                    <option>AB-</option>
-                                    <option>O+</option>
-                                    <option>O-</option>
-                                </select>
-                            </div>
-                            {/* district */}
-                            <div>
-                                <label htmlFor='email' className='block mb-2 text-sm'>
-                                    Distict
-                                </label>
-                                <select name='district' className="select select-primary w-full max-w-xs">
-                                    
-                                    <option>Dhaka</option>
-                                    <option>Faridpur</option>
-                                    <option>Gazipur</option>
-                                    <option>Gopalgonj</option>
-                                    <option>Kisorgonj</option>
-                                    <option>Madaripur</option>
-                                    <option>Manukgaonj</option>
-                                    <option>Munsigonj</option>
-                                    <option>Narayangonj</option>
-                                    <option>Narsingdi</option>
-                                    <option>Rajbari</option>
-                                    <option>Shariatpur</option>
-                                    <option>Tangail</option>
-                                    <option>Bogura</option>
-                                    <option>Joypurhat</option>
-                                    <option>Naogong</option>
-                                    <option>Natore</option>
-                                    <option>Pabna</option>
-                                    <option>Rajshahi</option>
-                                    <option>Sitajgonj</option>
-                                </select>
-                            </div>
+            <div className='flex justify-center items-center min-h-[calc(100vh-306px)]'>
+    <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
+      <div
+        className='hidden bg-cover bg-center lg:block lg:w-1/2'
+        style={{
+          backgroundImage: `url('https://i.ibb.co/vDh8rWw/pexels-cais-4680222.jpg')`,
+        }}
+      ></div>
 
-                            {/* Upazila */}
+      <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
+        <div className='flex justify-center mx-auto'>
+          <img
+            className='w-auto h-7 sm:h-8'
+            src=''
+            alt=''
+          />
+        </div>
 
-                            <div>
-                                <label htmlFor='email' className='block mb-2 text-sm'>
-                                    Upazila
-                                </label>
-                                <select name="upazila" className="select select-primary w-full max-w-xs">
-                                    
-                                    <option>Dhamrai</option>
-                                    <option>Dohar </option>
-                                    <option>Keraniganj</option>
-                                    <option>Nawabganj</option>
-                                    <option>Savar</option>
-                                    <option>Alfadanga </option>
-                                    <option>Bhanga</option>
-                                    <option>Boalmari</option>
-                                    <option>Charbhadrasan</option>
-                                    <option>Faridpur Sadar</option>
-                                    <option>Faridpur Sadar</option>
-                                    <option>Nagarkanda</option>
-                                    <option>Sadarpur</option>
-                                    <option>Shaltha</option>
-                                    <option>Gazipur Sadar</option>
-                                    <option>Kaliakair</option>
-                                    <option>Kapasia</option>
-                                    <option>Sreepur</option>
-                                    <option>Rajsjug</option>
-                                    <option>Sitajgonj</option>
-                                </select>
-                            </div>
+        <p className='mt-3 text-xl text-center text-gray-600 '>
+          Welcome back!
+          <h1 className="font-bold text-2xl">Blood4Life</h1>
+        </p>
 
-                            <div>
-                                <div className='flex justify-between'>
-                                    <label htmlFor='password' className='text-sm mb-2'>
-                                        Password
-                                    </label>
-                                </div>
-                                <input
-                                    type='password'
-                                    name='password'
-                                   
-                                    required
-                                    placeholder='*******'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-                                />
-                            </div>
 
-                            <div>
-                                <div className='flex justify-between'>
-                                    <label htmlFor='password' className='text-sm mb-2'>
-                                        confirm Password
-                                    </label>
-                                </div>
-                                <input
-                                    type='password'
-                                    name='confirmPassword'
-                                    
-                                    required
-                                    placeholder='*******'
-                                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-                                />
-                            </div>
-                        </div>
 
-                        <div>
-                            <button
-                                type='submit'
-                                className='bg-rose-500 w-full rounded-md py-3 text-white'
-                            >
-                                Continue
-                            </button>
-                        </div>
-                    </form>
-                    <div className='flex items-center pt-4 space-x-1'>
-                        <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+        <div className='flex items-center justify-between mt-4'>
+          <span className='w-1/5 border-b  lg:w-1/4'></span>
 
-                        <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-                    </div>
+          <div className='text-xs text-center text-gray-500 uppercase  hover:underline'>
+            or login with email
+          </div>
 
-                    <p className='px-6 text-sm text-center text-gray-400'>
-                        Already have an account?{' '}
-                        <Link
-                            to='/login'
-                            className='hover:underline hover:text-rose-500 text-red-600'
-                        >
-                            Login
-                        </Link>
+          <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
+        </div>
+      
+        <form
+onSubmit={handleSignUp}
 
-                    </p>
-                </div>
+    className='space-y-6 ng-untouched ng-pristine ng-valid'
+>
+    <div className='space-y-4'>
+        <div>
+            <label htmlFor='email' className='block mb-2 text-sm'>
+                Name
+            </label>
+            <input
+                type='text'
+                name='name'
+                id='name'
+                placeholder='Enter Your Name Here'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
+            />
+        </div>
+        <div>
+            <label htmlFor='image' className='block mb-2 text-sm'>
+                Select Image:
+            </label>
+            <input
+                required
+                type='file'
+                id='image'
+                name='image'
+                accept='image/*'
+            />
+        </div>
+        <div>
+            <label htmlFor='email' className='block mb-2 text-sm'>
+                Email address
+            </label>
+            <input
+                type='email'
+                name='email'
+                id='email'
+                required
+                placeholder='Enter Your Email Here'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
+            />
+        </div>
+
+        {/* blood */}
+
+        <div>
+            <label htmlFor='email' className='block mb-2 text-sm'>
+                Blood Group
+            </label>
+            <select name='bloodGroup' className="select select-primary w-full max-w-xs">
+                
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+            </select>
+        </div>
+        {/* district */}
+        <div>
+            <label htmlFor='email' className='block mb-2 text-sm'>
+                Distict
+            </label>
+            <select name='district' className="select select-primary w-full max-w-xs">
+                
+                <option>Dhaka</option>
+                <option>Faridpur</option>
+                <option>Gazipur</option>
+                <option>Gopalgonj</option>
+                <option>Kisorgonj</option>
+                <option>Madaripur</option>
+                <option>Manukgaonj</option>
+                <option>Munsigonj</option>
+                <option>Narayangonj</option>
+                <option>Narsingdi</option>
+                <option>Rajbari</option>
+                <option>Shariatpur</option>
+                <option>Tangail</option>
+                <option>Bogura</option>
+                <option>Joypurhat</option>
+                <option>Naogong</option>
+                <option>Natore</option>
+                <option>Pabna</option>
+                <option>Rajshahi</option>
+                <option>Sitajgonj</option>
+            </select>
+        </div>
+
+        {/* Upazila */}
+
+        <div>
+            <label htmlFor='email' className='block mb-2 text-sm'>
+                Upazila
+            </label>
+            <select name="upazila" className="select select-primary w-full max-w-xs">
+                
+                <option>Dhamrai</option>
+                <option>Dohar </option>
+                <option>Keraniganj</option>
+                <option>Nawabganj</option>
+                <option>Savar</option>
+                <option>Alfadanga </option>
+                <option>Bhanga</option>
+                <option>Boalmari</option>
+                <option>Charbhadrasan</option>
+                <option>Faridpur Sadar</option>
+                <option>Faridpur Sadar</option>
+                <option>Nagarkanda</option>
+                <option>Sadarpur</option>
+                <option>Shaltha</option>
+                <option>Gazipur Sadar</option>
+                <option>Kaliakair</option>
+                <option>Kapasia</option>
+                <option>Sreepur</option>
+                <option>Rajsjug</option>
+                <option>Sitajgonj</option>
+            </select>
+        </div>
+
+        <div>
+            <div className='flex justify-between'>
+                <label htmlFor='password' className='text-sm mb-2'>
+                    Password
+                </label>
             </div>
+            <input
+                type='password'
+                name='password'
+               
+                required
+                placeholder='*******'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+            />
+        </div>
+
+        <div>
+            <div className='flex justify-between'>
+                <label htmlFor='password' className='text-sm mb-2'>
+                    confirm Password
+                </label>
+            </div>
+            <input
+                type='password'
+                name='confirmPassword'
+                
+                required
+                placeholder='*******'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+            />
+        </div>
+    </div>
+
+    <div>
+        <button
+            type='submit'
+            className='bg-rose-500 w-full rounded-md py-3 text-white'
+        >
+            Continue
+        </button>
+    </div>
+</form>
+        <div className='flex items-center justify-between mt-4'>
+          <span className='w-1/5 border-b  md:w-1/4'></span>
+
+          <Link
+
+            to='/login'
+            className='text-xs text-red-700 uppercase  hover:underline'
+          >
+            or Login
+          </Link>
+
+          <span className='w-1/5 border-b  md:w-1/4'></span>
+        </div>
+      </div>
+    </div>
+  </div>
         </div>
     );
 };

@@ -5,16 +5,16 @@ const Featured = () => {
         <div className="mt-[60px] mx-[20px] lg:mx-[70px] mb-[30px]">
              <div className='text-center'>
                 <p className='text-red-500 mb-[20px]'>---Some Featured---</p>
-                <hr className='border-[2px]  ml-[80px] w-[300px] lg:ml-[420px] mb-[20px]' />
+                <hr className='border-[2px] ml-[50px] lg:w-[300px] lg:ml-[420px] mb-[20px]' />
                 <h1 className='font-bold text-3xl mb-[20px]'>Our Featured</h1>
-                <hr className='border-[2px] ml-[80px] w-[300px] lg:ml-[420px] mb-[40px]' />
+                <hr className='border-[2px] ml-[50px] lg:w-[300px] lg:ml-[420px] mb-[40px]' />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[20px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[20px] group">
                 {/* card-1 */}
             <div className="card  hover:translate-y-8 bg-base-100 shadow-xl">
   <figure className="px-10 pt-10">
-    <img src="https://i.ibb.co/C8kYwVy/pexels-shvetsa-3845115.jpg" alt="Shoes" className="rounded-xl w-full h-[200px]" />
+    <img src="https://i.ibb.co/C8kYwVy/pexels-shvetsa-3845115.jpg" alt="Shoes" className="rounded-xl w-full h-[200px] group-hover:scale-150" />
   </figure>
   <div className="card-body ">
     <h2 className="card-title">Our Impact!</h2>

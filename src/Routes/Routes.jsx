@@ -5,6 +5,7 @@ import Blog from "../Pages/Blog/Blog";
 import Login from "../Pages/Login/Login";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Register from "../Pages/Register/Register";
+import Deshboard from "../Layout/Deshboard";
 
 
 
@@ -22,11 +23,7 @@ export const router = createBrowserRouter([
           path:'/blog',
           element:<Blog></Blog>
         },
-        
-        // {
-        //        path:'/login',
-        //        element:<Login></Login>
-        // }
+      
       ]},
 
    {
@@ -36,6 +33,16 @@ export const router = createBrowserRouter([
    {
     path:'/register',
     element:<Register></Register>
+   }, 
+   
+   {
+       path:'/deshboard',
+       element:<Deshboard></Deshboard>,
+       children:[
+        {
+          
+        }
+       ]
    }
  
 
