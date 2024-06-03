@@ -6,12 +6,12 @@ const Deshboard = () => {
     return (
         <div>
 
-            <div className="relative min-h-screen md:flex">
+            <div className="relative  md:flex">
                 <Sidebar></Sidebar>
             </div>
 
-            <div className="flex-1 md:ml-64">
-                <div className="p-5">
+            <div className="flex-1 md:ml-80">
+                <div>
                 <Outlet></Outlet>
                 </div>
             </div>

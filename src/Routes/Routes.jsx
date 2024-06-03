@@ -6,6 +6,9 @@ import Login from "../Pages/Login/Login";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Register from "../Pages/Register/Register";
 import Deshboard from "../Layout/Deshboard";
+import MyDonationPage from "../Pages/Deshboard/Doner/MyDonationPage";
+import DonerHome from "../Pages/Deshboard/Doner/DonerHome";
+import CreateDonation from "../Pages/Deshboard/Doner/CreateDonation";
 
 
 
@@ -40,7 +43,18 @@ export const router = createBrowserRouter([
        element:<Deshboard></Deshboard>,
        children:[
         {
-          
+          path:'donerHome',
+          element:<DonerHome></DonerHome>
+       },
+
+
+        {
+          path:'my-donation-page',
+          element:<MyDonationPage></MyDonationPage>
+        },
+        {
+          path:'createDonation',
+          element:<CreateDonation></CreateDonation>
         }
        ]
    }

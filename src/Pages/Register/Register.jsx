@@ -5,12 +5,34 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 
 
 const Register = () => {
     const{createUser,updateUserProfile}=useAuth();
     // console.log(createUser,updateUserProfile);
     const navigate = useNavigate();
+
+
+    const [districts, setDistricts]= useState([]);
+
+    const [upazilas, setUpazilas]= useState([])
+
+    useEffect(()=>{
+
+        fetch('/districts.json')
+        .then(res=>res.json())
+        .then(data=> setDistricts(data))
+    },[])
+
+    useEffect(()=>{
+
+        fetch('/upazila.json')
+        .then(res=>res.json())
+        .then(data=> setUpazilas(data))
+    },[])
+
+
 
     const handleSignUp= async e =>{
         e.preventDefault();
@@ -81,7 +103,7 @@ const Register = () => {
                 <title>Blood4Life || signup</title>
             </Helmet>
               
-
+             
 
             <div className='flex justify-center items-center min-h-[calc(100vh-306px)]'>
     <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -188,27 +210,15 @@ onSubmit={handleSignUp}
                 Distict
             </label>
             <select name='district' className="select select-primary w-full max-w-xs">
-                
-                <option>Dhaka</option>
-                <option>Faridpur</option>
-                <option>Gazipur</option>
-                <option>Gopalgonj</option>
-                <option>Kisorgonj</option>
-                <option>Madaripur</option>
-                <option>Manukgaonj</option>
-                <option>Munsigonj</option>
-                <option>Narayangonj</option>
-                <option>Narsingdi</option>
-                <option>Rajbari</option>
-                <option>Shariatpur</option>
-                <option>Tangail</option>
-                <option>Bogura</option>
-                <option>Joypurhat</option>
-                <option>Naogong</option>
-                <option>Natore</option>
-                <option>Pabna</option>
-                <option>Rajshahi</option>
-                <option>Sitajgonj</option>
+                 
+               {
+                districts.map(district=>
+
+                    <option key={district.id}>{district.name}</option>
+                )
+               }
+
+               
             </select>
         </div>
 
@@ -219,27 +229,12 @@ onSubmit={handleSignUp}
                 Upazila
             </label>
             <select name="upazila" className="select select-primary w-full max-w-xs">
+
+
+                {
+                    upazilas.map(upazila=>  <option key={upazila.id}>{upazila.name}</option> )
+                }
                 
-                <option>Dhamrai</option>
-                <option>Dohar </option>
-                <option>Keraniganj</option>
-                <option>Nawabganj</option>
-                <option>Savar</option>
-                <option>Alfadanga </option>
-                <option>Bhanga</option>
-                <option>Boalmari</option>
-                <option>Charbhadrasan</option>
-                <option>Faridpur Sadar</option>
-                <option>Faridpur Sadar</option>
-                <option>Nagarkanda</option>
-                <option>Sadarpur</option>
-                <option>Shaltha</option>
-                <option>Gazipur Sadar</option>
-                <option>Kaliakair</option>
-                <option>Kapasia</option>
-                <option>Sreepur</option>
-                <option>Rajsjug</option>
-                <option>Sitajgonj</option>
             </select>
         </div>
 
