@@ -33,8 +33,8 @@ const CreateDonation = () => {
     const handleSubmit = async e =>{
         e.preventDefault();
         const form = e.target;
-        const requesterName= user.displayName;
-        const requesterEmail = user.email;
+        const requesterName= user?.displayName;
+        const requesterEmail = user?.email;
      
         const recipientName= form.recipientName.value;
         const district = form.district.value;
