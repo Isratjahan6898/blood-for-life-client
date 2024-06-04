@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import Swal from "sweetalert2";
+
+
 
 
 const CreateDonation = () => {
     const {user}= useAuth();
+
+    const axiosSecure = useAxiosCommon()
+    console.log(user);
     const [districts, setDistricts]= useState([]);
     const [upazilas, setUpazilas]= useState([])
     useEffect(()=>{
@@ -21,9 +28,13 @@ const CreateDonation = () => {
     },[])
 
 
+
+
     const handleSubmit = async e =>{
         e.preventDefault();
         const form = e.target;
+        const requesterName= user.displayName;
+        const requesterEmail = user.email;
      
         const recipientName= form.recipientName.value;
         const district = form.district.value;
@@ -35,20 +46,29 @@ const CreateDonation = () => {
         const message= form.message.value;
         const status = 'pending'
 
-        const doner = {
-            name: user?.displayName,
-            email: user.email
-        }
-
-
-      
-
 
         try{
-            const createDonation ={
-                  doner,recipientName,district,upazila,hospital,date,time,
+            const bloodData ={
+              requesterName,requesterEmail,    recipientName ,district,upazila,hospital,date,time,
                   address, message,status
             }
+
+            // past server-
+
+            axiosSecure.post('/blood', bloodData)
+            .then(res=>{
+                console.log(res.data);
+                if(res.data.insertedId){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
+          
           
         }
 
@@ -72,7 +92,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Requester Name</span>
     </label>
-    <input type="text" name="userName" defaultValue={user.displayName} placeholder="requester Name" className="input w-[350px] text-black lg:w-[350px] input-bordered" disabled required />
+    <input type="text" name="userName" defaultValue={user?.displayName} placeholder="requester Name" className="input w-[350px] text-black lg:w-[350px] input-bordered" disabled required />
   </div>
       
    {/* user email */}
@@ -80,7 +100,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">requester email</span>
     </label>
-    <input type="text"  name="userEmail" defaultValue={user.email} placeholder="requester email" className="input w-[350px] lg:w-[350px] input-bordered" disabled required />
+    <input type="text"  name="userEmail" defaultValue={user?.email} placeholder="requester email" className="input w-[350px] lg:w-[350px] input-bordered" disabled required />
   </div>
 
 
