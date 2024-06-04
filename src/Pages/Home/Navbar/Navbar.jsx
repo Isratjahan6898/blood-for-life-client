@@ -64,7 +64,7 @@ const Navbar = () => {
   </div>
   <div className="navbar-end hidden lg:flex">
     <ul className="menu menu-horizontal text-white px-1">
-      <Link><p className="mr-[20px]" >Donation Request</p></Link>
+      <Link to='/donationRequest'><p className="mr-[20px]" >Donation Request</p></Link>
 
       <Link to='/blog'><p className="mr-[20px]">Bolg</p></Link>
 

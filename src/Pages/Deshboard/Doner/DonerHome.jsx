@@ -36,10 +36,13 @@ const DonerHome = () => {
     if (bloodData.length === 0) {
         return null;
     }
+
+
+
     return (
         <div className="lg:mx-[60px] mt-[30px]">
           <h1 className="text-center font-bold text-3xl text-red-800">WelCome Doner: {user?.displayName}</h1>
-          <h1>{bloodData.length}</h1>
+          
 
 
           <div className="overflow-x-auto">
@@ -72,7 +75,7 @@ const DonerHome = () => {
       <td>{blood.status}</td>
       <td>{blood.requesterName}  {blood.requesterEmail}</td>
       <td><button><MdDelete  className="text-3xl"/></button></td>
-      <td><button><MdOutlineBrowserUpdated  className="text-3xl"/></button></td>
+      <td><button ><MdOutlineBrowserUpdated  className="text-3xl"/></button></td>
       <td><button><FaEye  className="text-3xl"/></button></td>
 
     </tr>
@@ -81,6 +84,8 @@ const DonerHome = () => {
 
     </tbody>
   </table>
+
+
 </div>
         </div>
         

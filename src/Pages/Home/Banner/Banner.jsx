@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
@@ -9,8 +10,8 @@ const Banner = () => {
       <h1 className="mb-5 text-5xl font-bold">Blood Donors
 Critically Needed</h1>
       <p className="mb-5">One blood donation can save as many as three lives. Sustainable and quality blood services play a critical role in the health of a society and in preparing for, and responding to, disasters. </p>
-      <button className="btn bg-red-400 mr-[30px]">Join as donor</button>
-      <button className="btn bg-red-400">Search Donors</button>
+      <Link to='/register'><button className="btn bg-red-400 mr-[30px]">Join as donor</button></Link>
+      <Link to='/searchPage'>  <button className="btn bg-red-400">Search Donors</button></Link>
     </div>
   </div>
 </div>

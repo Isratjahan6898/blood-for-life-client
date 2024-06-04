@@ -9,6 +9,7 @@ import Deshboard from "../Layout/Deshboard";
 import MyDonationPage from "../Pages/Deshboard/Doner/MyDonationPage";
 import DonerHome from "../Pages/Deshboard/Doner/DonerHome";
 import CreateDonation from "../Pages/Deshboard/Doner/CreateDonation";
+import DonationRequest from "../Pages/DonationRequest/DonationRequest";
 
 
 
@@ -26,8 +27,17 @@ export const router = createBrowserRouter([
           path:'/blog',
           element:<Blog></Blog>
         },
-      
+       
+        {
+          path:'/donationRequest',
+          element:<DonationRequest></DonationRequest>
+        }
       ]},
+
+      // {
+      //   path:'/donationRequest',
+      //   element:<DonationRequest></DonationRequest>
+      // },
 
    {
     path:'/login',
