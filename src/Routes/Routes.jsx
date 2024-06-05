@@ -10,8 +10,10 @@ import MyDonationPage from "../Pages/Deshboard/Doner/MyDonationPage";
 import DonerHome from "../Pages/Deshboard/Doner/DonerHome";
 import CreateDonation from "../Pages/Deshboard/Doner/CreateDonation";
 import DonationRequest from "../Pages/DonationRequest/DonationRequest";
-import UpdateData from "../Pages/Deshboard/Doner/UpdateData";
+
 import ViewDetails from "../Pages/ViewDetails/ViewDetails";
+import UpdateData from "../Pages/Deshboard/Doner/UpdateData";
+import Modal from "../Pages/Modal/Modal";
 
 
 
@@ -36,7 +38,9 @@ export const router = createBrowserRouter([
         },
         {
           path:'/viewDetails/:id',
-          element:<ViewDetails></ViewDetails>
+          element:<ViewDetails></ViewDetails>,
+          loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/blood/${params.id}`)
+
         }
       ]},
 
@@ -52,7 +56,12 @@ export const router = createBrowserRouter([
    {
     path:'/register',
     element:<Register></Register>
-   }, 
+   },
+   
+   {
+      path:'/openModal',
+      element:<Modal></Modal>
+   },
    
    {
        path:'/deshboard',

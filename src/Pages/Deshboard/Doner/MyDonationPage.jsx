@@ -119,6 +119,8 @@ return (
                     onClick={() => handleDelete(blood)}
                   ><MdDelete className="text-3xl text-red-600" /></button></td>
                    <td><Link to={`/deshboard/updateBloodData/${blood._id}`}><button ><MdOutlineBrowserUpdated className="text-3xl text-green-600 " /></button></Link></td>
+
+                   
                   <Link to={`/viewDetails/${blood._id}`}><td><button><FaEye className="text-3xl" /></button></td></Link>
 
                 </tr>

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const CreateDonation = () => {
     const {user}= useAuth();
+    const navigate = useNavigate()
 
     const axiosSecure = useAxiosCommon()
     console.log(user);
@@ -66,6 +68,8 @@ const CreateDonation = () => {
                         showConfirmButton: false,
                         timer: 1500
                       });
+
+                      navigate('/deshboard/my-donation-page')
                 }
             })
           
