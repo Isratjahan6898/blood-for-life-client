@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
-import Swal from "sweetalert2";
+// import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { useLoaderData } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 
+const UpdateData = () => {const {
+    register,
+    handleSubmit
+    
+   
+  } = useForm
 
+    const item= useLoaderData();
+    console.log(item);
+   
 
-const CreateDonation = () => {
+    const {recipientName,  district, hospital, 
+        message, time, upazila, address, date,} = item;
+
     const {user}= useAuth();
 
-    const axiosSecure = useAxiosCommon()
-    console.log(user);
+
+
+    // const axiosSecure = useAxiosCommon()
+   
     const [districts, setDistricts]= useState([]);
     const [upazilas, setUpazilas]= useState([])
     useEffect(()=>{
@@ -28,71 +42,28 @@ const CreateDonation = () => {
     },[])
 
 
+  const onSubmit = data =>{
+    console.log(data);
+  }
+
+      
 
 
-    const handleSubmit = async e =>{
-        e.preventDefault();
-        const form = e.target;
-        const requesterName= user?.displayName;
-        const requesterEmail = user?.email;
-     
-        const recipientName= form.recipientName.value;
-        const district = form.district.value;
-        const upazila = form.upazila.value;
-        const hospital = form.hospital.value;
-        const date = form.date.value;
-        const time = form.time.value;
-        const address = form.address.value;
-        const message= form.message.value;
-        const status = 'pending'
-
-
-        try{
-            const bloodData ={
-              requesterName,requesterEmail,    recipientName ,district,upazila,hospital,date,time,
-                  address, message,status
-            }
-
-            // post server-
-
-            axiosSecure.post('/blood', bloodData)
-            .then(res=>{
-                console.log(res.data);
-                if(res.data.insertedId){
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your work has been saved",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                }
-            })
-          
-          
-        }
-
-        catch(err){
-            console.log(err);
-        }
-
-
-    }
+  
+ 
     return (
         <div>
-            <h1 className="text-center mt-[20px] font-bold text-4xl mb-[20px] text-red-500">Create Donation Form</h1>
-               
+            <h1 className="text-3xl font-bold text-center text-red-500 my-[30px]">Update Form</h1>
 
-             <div>
-
-             <form  onSubmit={handleSubmit} className="">
+            <div>
+            <form  onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col md:flex-row lg:flex-row  md:px-[60px] lg:px-[100px] md:gap-[20px] lg:gap-[30px]">
             {/* user name */}
           <div className="form-control">
     <label className="label">
       <span className="label-text">Requester Name</span>
     </label>
-    <input type="text" name="userName" defaultValue={user?.displayName} placeholder="requester Name" className="input w-[350px] text-black lg:w-[350px] input-bordered" disabled required />
+    <input type="text" name="userName" {...register("userName")} defaultValue={user?.displayName} placeholder="requester Name" className="input w-[350px] text-black lg:w-[350px] input-bordered" disabled required />
   </div>
       
    {/* user email */}
@@ -100,7 +71,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">requester email</span>
     </label>
-    <input type="text"  name="userEmail" defaultValue={user?.email} placeholder="requester email" className="input w-[350px] lg:w-[350px] input-bordered" disabled required />
+    <input type="text"  name="userEmail" {...register("userEmail")} defaultValue={user?.email} placeholder="requester email" className="input w-[350px] lg:w-[350px] input-bordered" disabled required />
   </div>
 
 
@@ -116,7 +87,7 @@ const CreateDonation = () => {
          <label className="label">
       <span className="label-text">recipient name</span>
     </label>
-    <input type="text" name="recipientName"  placeholder="recipientName" className="input w-[350px] lg:w-[350px] input-bordered"  required />
+    <input type="text" name="recipientName" {...register("receipientName")} defaultValue={recipientName}  placeholder="recipientName" className="input w-[350px] lg:w-[350px] input-bordered"  required />
          </div>
       
   {/* district */}
@@ -124,7 +95,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">District</span>
     </label>
-    <select name='district' className="select w-full max-w-xs">
+    <select name='district' {...register("district")} defaultValue={district} className="select w-full max-w-xs">
                  
                  {
                   districts.map(district=>
@@ -156,7 +127,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Upazila</span>
     </label>
-    <select name="upazila" className="select  w-full max-w-xs">
+    <select name="upazila" {...register("upazila")} defaultValue={upazila} className="select  w-full max-w-xs">
 
 
 {
@@ -171,7 +142,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Hospital Name</span>
     </label>
-    <input type="text"  name="hospital"  placeholder="user name" className="input w-[350px] lg:w-[350px] input-bordered" required />
+    <input type="text"  {...register("hospital")} name="hospital"  defaultValue={hospital} placeholder="user name" className="input w-[350px] lg:w-[350px] input-bordered" required />
         </div>
 
 
@@ -190,7 +161,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Donation Date</span>
     </label>
-    <input type="date"  name="date"  placeholder="date" className="input w-[350px] lg:w-[350px] input-bordered" required />
+    <input type="date"  {...register("date")} name="date" defaultValue={date}  placeholder="date" className="input w-[350px] lg:w-[350px] input-bordered" required />
 
   </div>
       
@@ -199,7 +170,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Donation Time</span>
     </label>
-    <input type="text" name="time"  placeholder="instaction" className="input w-[350px] lg:w-[350px] input-bordered" required />
+    <input type="text" name="time" {...register("time")} defaultValue={time}  placeholder="instaction" className="input w-[350px] lg:w-[350px] input-bordered" required />
   </div>
 
 
@@ -213,7 +184,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Full Address</span>
     </label>
-    <input type="text"  name="address"  placeholder="Address" className="input w-[350px] lg:w-[350px] input-bordered" required />
+    <input type="text"  name="address" {...register("address")} defaultValue={address}  placeholder="Address" className="input w-[350px] lg:w-[350px] input-bordered" required />
   </div>
       
 
@@ -221,7 +192,7 @@ const CreateDonation = () => {
     <label className="label">
       <span className="label-text">Request message</span>
     </label>
-    <input type="text" name="message"   placeholder="type message" className="input w-[350px] lg:w-[350px] input-bordered" required />
+    <input type="text" name="message" {...register("message")} defaultValue={message}  placeholder="type message" className="input w-[350px] lg:w-[350px] input-bordered" required />
   </div>
 
 
@@ -238,16 +209,15 @@ const CreateDonation = () => {
 
     <div className=" md:px-[60px] lg:px-[100px]">
     <div className="form-control mt-6">
-    <button className="btn md:w-[700px] w-[350px] bg-red-400 text-white">Request Button </button>
+      <input type="submit" value="Update" />
+    {/* <button className="btn md:w-[700px] w-[350px] bg-red-400 text-white">Update Button </button> */}
   </div>
     </div>
 
       </form>
-                
-                
-            </div>  
+            </div>
         </div>
     );
 };
 
-export default CreateDonation;
+export default UpdateData;

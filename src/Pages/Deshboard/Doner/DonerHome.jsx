@@ -57,9 +57,7 @@ const DonerHome = () => {
         <th>donation date</th>
         <th>donation status</th>
         <th>donor</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>View Details</th>
+       
       </tr>
     </thead>
     <tbody>
@@ -74,9 +72,8 @@ const DonerHome = () => {
       <td>{blood.date}</td>
       <td>{blood.status}</td>
       <td>{blood.requesterName}  {blood.requesterEmail}</td>
-      <td><button><MdDelete  className="text-3xl"/></button></td>
-      <td><button ><MdOutlineBrowserUpdated  className="text-3xl"/></button></td>
-      <td><button><FaEye  className="text-3xl"/></button></td>
+    
+   
 
     </tr>
             )

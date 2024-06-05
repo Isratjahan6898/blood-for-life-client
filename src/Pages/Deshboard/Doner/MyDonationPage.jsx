@@ -118,19 +118,13 @@ return (
                   <td><button
                     onClick={() => handleDelete(blood)}
                   ><MdDelete className="text-3xl text-red-600" /></button></td>
-                   <td><Link to={`/deshboard/updateBloodData/${blood}`}><button ><MdOutlineBrowserUpdated className="text-3xl text-green-600 " /></button></Link></td>
-                  <td><button><FaEye className="text-3xl" /></button></td>
+                   <td><Link to={`/deshboard/updateBloodData/${blood._id}`}><button ><MdOutlineBrowserUpdated className="text-3xl text-green-600 " /></button></Link></td>
+                  <Link to={`/viewDetails/${blood._id}`}><td><button><FaEye className="text-3xl" /></button></td></Link>
 
                 </tr>
               )
             }
-            {/*       
-      <tr className="bg-base-200">
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr> */}
+    
 
           </tbody>
         </table>
