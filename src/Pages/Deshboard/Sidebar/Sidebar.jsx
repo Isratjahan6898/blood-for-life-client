@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
-// import { BsFingerprint, BsFillHouseAddFill } from 'react-icons/bs'
-// import { GrUserAdmin } from 'react-icons/gr'
-// import { MdHomeWork } from 'react-icons/md'
+
 import { AiOutlineBars } from 'react-icons/ai'
-import { BsFillHouseAddFill, BsGraphUp } from 'react-icons/bs'
+import {  BsGraphUp } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
+import { FaHome } from 'react-icons/fa'
+import { MdOutlineFindInPage } from 'react-icons/md'
 
 const Sidebar = () => {
     const { logOut } = useAuth()
@@ -25,15 +25,7 @@ const Sidebar = () => {
       <div className='bg-red-400 text-gray-800 flex justify-between md:hidden'>
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
-            {/* <Link to='/'>
-              <img
-                // className='hidden md:block'
-                src='https://i.ibb.co/4ZXzmq5/logo.png'
-                alt='logo'
-                width='100'
-                height='100'
-              />
-            </Link> */}
+         
 
                 <Link to='/'><h1 className=" font-extrabold text-red-900 font-lato italic text-5xl">Blood4Life</h1></Link>
           </div>
@@ -56,15 +48,7 @@ const Sidebar = () => {
         <div>
           <div>
             <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
-              {/* <Link to='/'>
-                <img
-                  // className='hidden md:block'
-                  src='https://i.ibb.co/4ZXzmq5/logo.png'
-                  alt='logo'
-                  width='100'
-                  height='100'
-                />
-              </Link> */}
+             
 
 <Link to='/'><h1 className=" font-extrabold hidden md:block text-red-900 font-lato italic text-4xl">Blood4Life</h1></Link>
             </div>
@@ -89,7 +73,8 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <BsGraphUp className='w-5 h-5 text-white' />
+                <FaHome
+                 className='w-5 h-5 text-white' />
 
                 <span className='mx-4 font-medium text-white'>Home</span>
               </NavLink>
@@ -117,9 +102,9 @@ const Sidebar = () => {
                   }`
                 }
               >
-                <BsFillHouseAddFill className='w-5 h-5' />
+                <MdOutlineFindInPage className='w-5 h-5 text-white' />
 
-                <span className='mx-4 font-medium'>Create Donation Page</span>
+                <span className='mx-4 font-medium text-white'>Create Donation Page</span>
               </NavLink>
               {/* My Listing */}
               {/* <NavLink

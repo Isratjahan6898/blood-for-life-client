@@ -2,8 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
-import { MdDelete, MdOutlineBrowserUpdated } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
+
 
 
 const DonerHome = () => {
@@ -45,7 +44,7 @@ const DonerHome = () => {
           
 
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto my-[50px]">
   <table className="table">
     {/* head */}
     <thead>
@@ -66,7 +65,7 @@ const DonerHome = () => {
             bloodData.map(blood=>
                 
       <tr key={blood._id} className="bg-base-200">
-      <th>{blood.recipientName}</th>
+      <th className="pb-[20px]">{blood.recipientName}</th>
       <td>{blood.district} {blood.upazila}</td>
       <td>{blood.time}</td>
       <td>{blood.date}</td>

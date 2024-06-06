@@ -1,12 +1,44 @@
 import { useLoaderData } from "react-router-dom";
-import Modal from "../Modal/Modal";
+// import Modal from 'react-modal';
+import { useState } from "react";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 
 const ViewDetails = () => {
+  const axiosCommon= useAxiosCommon();
+  const {user}= useAuth();
     const item= useLoaderData();
-    const {   recipientName ,district,upazila,hospital,date,time,
-        address, message,status} = item;
+    const { handleSubmit, register, reset } = useForm();
+    const { recipientName ,district,upazila,hospital,date,time,
+        address, message,status, _id} = item;
     console.log(item);
+    const [request, setRequest] = useState(null);
+
+    const onSubmit = (data) => {
+      console.log(data);
+
+      
+  }
+   
+
+
+  const handleDonate = async () => {
+    try {
+
+      
+      const response = await axiosCommon.put(`/donation-requests/${_id}/status`, { status: 'inprogress' });
+      setRequest(prevRequest => ({ ...prevRequest, status: 'inprogress' }));
+      reset();
+      document.getElementById('my_modal_3').close();
+    } catch (error) {
+      console.error('Failed to update the donation status:', error);
+    }
+  };
+
+  // if (!request) return <div>Loading...</div>;
     return (
         <div>
 
@@ -71,7 +103,31 @@ const ViewDetails = () => {
 
 
     <div className="card-actions  mb-[10px]">
-      <button className=" btn bg-red-400"> <Modal></Modal></button>
+    
+
+<button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>
+        Donate
+      </button>
+
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <form method="dialog" onSubmit={handleSubmit(onSubmit)}>
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <h3 className="font-bold text-lg">Confirm Donation</h3>
+          <div>
+            <label>Donor Name: </label>
+            <input type="text"   {...register("requesterName")} defaultValue={user?.displayName} readOnly className="input input-bordered w-full max-w-xs" />
+          </div>
+          <div className="mt-4">
+            <label>Donor Email: </label>
+            <input type="email" {...register("requesterEmail")} defaultValue={user?.email} readOnly className="input input-bordered w-full max-w-xs" />
+          </div>
+          <div className="modal-action">
+            <button type="button" onClick={handleDonate} className="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </dialog>
     </div>
   </div>
 </div>

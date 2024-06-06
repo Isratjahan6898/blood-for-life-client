@@ -68,7 +68,9 @@ export const router = createBrowserRouter([
        element:<Deshboard></Deshboard>,
        children:[
         {
-          path:'donerHome',
+
+          index:true,
+          // path:'donerHome',
           element:<DonerHome></DonerHome>
        },
 

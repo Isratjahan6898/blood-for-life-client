@@ -3,14 +3,17 @@ import useAuth from "../../hooks/useAuth";
 
 
 
+
 const Modal = () => {
     const {user}= useAuth();
     console.log(user);
-    const { handleSubmit, register, } = useForm();
+    const { handleSubmit, register, reset } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
     }
+    reset();
+
   
     return (
         <div>
