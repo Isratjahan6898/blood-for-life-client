@@ -6,12 +6,14 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 
 const Register = () => {
     const{createUser,updateUserProfile}=useAuth();
     // console.log(createUser,updateUserProfile);
     const navigate = useNavigate();
+    const axiosCommon= useAxiosCommon();
 
 
     const [districts, setDistricts]= useState([]);
@@ -54,9 +56,7 @@ const Register = () => {
         const formData =new FormData()
         formData.append('image', image)
 
-        
-       
-        // console.log(email,name,image,bloodGroup,district,upazila,password,confirmPassword);
+        console.log(email,name,image,bloodGroup,district,upazila,password,confirmPassword);
 
         try{
 
@@ -67,7 +67,16 @@ const Register = () => {
            const{ data }= await axios.post(`https://api.imgbb.com/1/upload/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,formData)
             console.log(data.data.display_url);
 
-
+            const userData = {
+                email,
+                name,
+                image :data.data.display_url,
+                bloodGroup,
+                district,
+                upazila,
+                status:'active',
+                role:'doner'
+            }
             //user registation
 
             const result= await createUser(email,password);
@@ -85,7 +94,9 @@ const Register = () => {
                 timer: 1500
               });
               
-
+         //save user in database
+         const response = await axiosCommon.put('/user', userData);
+         console.log('User information updated:', response.data);
 
 
 

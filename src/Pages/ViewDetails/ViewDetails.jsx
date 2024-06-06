@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 
+
 const ViewDetails = () => {
   const axiosCommon= useAxiosCommon();
   const {user}= useAuth();
@@ -28,7 +29,6 @@ const ViewDetails = () => {
   const handleDonate = async () => {
     try {
 
-      
       const response = await axiosCommon.put(`/donation-requests/${_id}/status`, { status: 'inprogress' });
       setRequest(prevRequest => ({ ...prevRequest, status: 'inprogress' }));
       reset();
