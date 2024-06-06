@@ -3,15 +3,17 @@ import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 
 import { AiOutlineBars } from 'react-icons/ai'
-import {  BsGraphUp } from 'react-icons/bs'
+
 import { NavLink } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
-import { FaHome } from 'react-icons/fa'
-import { MdOutlineFindInPage } from 'react-icons/md'
+
 import useRole from '../../../hooks/useRole'
-import MenuItem from './MenuItem'
+import HostMenu from './HostMenu/HostMenu'
+import AdminMenu from './AdminMenu/AdminMenu'
+import Volunteer from './Volunteer/Volunteer'
+
 
 
 
@@ -70,19 +72,10 @@ const Sidebar = () => {
 
 
 
-            
+            {role==='doner' && <HostMenu></HostMenu>}
+            {role==='volunteer' && <Volunteer></Volunteer>}
+            {role==='admin' && <AdminMenu></AdminMenu>}
 
-                <MenuItem label='Home' address='/deshboard/donerHome' icon={FaHome}/>
-
-               {/* my donation page */}
-
-                 <MenuItem label='My-Donation-page' address='/deshboard/my-donation-page' icon={BsGraphUp}/>
-
-              {/* crate */}
-              
-
-          <MenuItem label='Create Donation Page' address='/deshboard/createDonation' icon=   
-           {MdOutlineFindInPage}/>
               
             </nav>
           </div>
