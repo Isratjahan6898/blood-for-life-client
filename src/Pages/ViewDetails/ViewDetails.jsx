@@ -29,7 +29,9 @@ const ViewDetails = () => {
   const handleDonate = async () => {
     try {
 
-      const response = await axiosCommon.put(`/donation-requests/${_id}/status`, { status: 'inprogress' });
+      
+      const {response} = await axiosCommon.put(`/donation-requests/${_id}/status`, { status: 'inprogress' });
+      console.log(response);
       setRequest(prevRequest => ({ ...prevRequest, status: 'inprogress' }));
       reset();
       document.getElementById('my_modal_3').close();

@@ -10,10 +10,16 @@ import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import { FaHome } from 'react-icons/fa'
 import { MdOutlineFindInPage } from 'react-icons/md'
+import useRole from '../../../hooks/useRole'
+import MenuItem from './MenuItem'
+
+
 
 const Sidebar = () => {
     const { logOut } = useAuth()
     const [isActive, setActive] = useState(false);
+    const [role]= useRole();
+    console.log(role);
 
 
     const handleToggle = () => {
@@ -60,65 +66,24 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {/* Statistics */}
+              {/* Home */}
 
 
 
-              <NavLink
-                to='/deshboard/donerHome'
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                  }`
-                }
-              >
-                <FaHome
-                 className='w-5 h-5 text-white' />
+            
 
-                <span className='mx-4 font-medium text-white'>Home</span>
-              </NavLink>
+                <MenuItem label='Home' address='/deshboard/donerHome' icon={FaHome}/>
 
-              <NavLink
-                to='/deshboard/my-donation-page'
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                  }`
-                }
-              >
-                <BsGraphUp className='w-5 h-5 text-white' />
+               {/* my donation page */}
 
-                <span className='mx-4 font-medium text-white'>My-Donation-page</span>
-              </NavLink>
+                 <MenuItem label='My-Donation-page' address='/deshboard/my-donation-page' icon={BsGraphUp}/>
 
-              {/* Add Room */}
-              <NavLink
-                to='/deshboard/createDonation'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                  }`
-                }
-              >
-                <MdOutlineFindInPage className='w-5 h-5 text-white' />
+              {/* crate */}
+              
 
-                <span className='mx-4 font-medium text-white'>Create Donation Page</span>
-              </NavLink>
-              {/* My Listing */}
-              {/* <NavLink
-                to='my-listings'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                  }`
-                }
-              >
-                <MdHomeWork className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>My Listings</span>
-              </NavLink> */}
+          <MenuItem label='Create Donation Page' address='/deshboard/createDonation' icon=   
+           {MdOutlineFindInPage}/>
+              
             </nav>
           </div>
         </div>
@@ -128,7 +93,7 @@ const Sidebar = () => {
 
           {/* Profile Menu */}
           <NavLink
-            to='/dashboard/profile'
+            to='/deshboard/profile'
             className={({ isActive }) =>
               `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                 isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
