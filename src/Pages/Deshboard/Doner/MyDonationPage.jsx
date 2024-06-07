@@ -7,8 +7,9 @@ import { FaEye } from "react-icons/fa";
 import { MdOutlineBrowserUpdated } from "react-icons/md";
 
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery} from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+
 
 
 
@@ -21,6 +22,7 @@ const MyDonationPage = () => {
 
   const axiosCommon = useAxiosCommon();
 
+  
 
   const { data: bloodData = [], isLoading, refetch} = useQuery({
     queryKey: ['my-donation', user?.email],
@@ -40,6 +42,12 @@ const MyDonationPage = () => {
       }
     },
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  
 
 
   const handleDelete = blood => {
@@ -75,11 +83,7 @@ const MyDonationPage = () => {
 
 
 
-if (isLoading) {
-    return <span className="loading loading-spinner loading-lg"></span>;
-}
-
-
+  
 return (
   <div className=" mt-[30px]">
     <h1 className="text-center font-bold text-3xl text-red-800">My All Donation Request</h1>
@@ -114,6 +118,9 @@ return (
                   <td>{blood.time}</td>
                   <td>{blood.date}</td>
                   <td>{blood.status}</td>
+                  
+                
+        
                   <td>{blood.requesterName}  {blood.requesterEmail}</td>
                   <td><button
                     onClick={() => handleDelete(blood)}

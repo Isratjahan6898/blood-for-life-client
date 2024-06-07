@@ -15,6 +15,15 @@ import ViewDetails from "../Pages/ViewDetails/ViewDetails";
 import UpdateData from "../Pages/Deshboard/Doner/UpdateData";
 import Modal from "../Pages/Modal/Modal";
 import Profile from "../Pages/Deshboard/Profile/Profile";
+import AllUser from "../Pages/Deshboard/Admin/AllUser";
+import AdminHome from "../Pages/Deshboard/Admin/AdminHome";
+import BloodRequest from "../Pages/Deshboard/Admin/BloodRequest";
+import UpdateAdmin from "../Pages/Deshboard/Admin/UpdateAdmin";
+import ContentManagement from "../Pages/Deshboard/Admin/ContentManagement";
+
+import VolunteerHome from "../Pages/Deshboard/Volunteer/VolunteerHome";
+import VolunteerBloodRequest from "../Pages/Deshboard/Volunteer/VolunteerBloodRequest";
+import VolunteerContent from "../Pages/Deshboard/Volunteer/VolunteerContent";
 
 
 
@@ -66,9 +75,9 @@ export const router = createBrowserRouter([
        element:<Deshboard></Deshboard>,
        children:[
         {
-
-          index:true,
-          // path:'donerHome',
+             //doner
+          // index:true,
+          path:'donerHome',
           element:<DonerHome></DonerHome>
        },
 
@@ -78,7 +87,7 @@ export const router = createBrowserRouter([
           element:<MyDonationPage></MyDonationPage>
         },
         {
-          path:'createDonation',
+          path:'all-blood-donation-request',
           element:<CreateDonation></CreateDonation>
         },
         {
@@ -86,6 +95,49 @@ export const router = createBrowserRouter([
           element:<UpdateData></UpdateData>,
           loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/blood/${params.id}`)
         },
+      
+         //admin
+        {
+          path:'allUser',
+          element:<AllUser></AllUser>
+        },
+
+        {
+          path:'adminHome',
+          element:<AdminHome></AdminHome>
+        },
+        {
+          path:'createDonation',
+          element:<BloodRequest></BloodRequest>
+        },
+        {
+          path:'adminUpdate/:id',
+          element:<UpdateAdmin></UpdateAdmin>,
+          loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/blood/${params.id}`)
+        },
+
+        {
+          path:'content-management',
+          element:<ContentManagement></ContentManagement>
+        },
+
+       
+      {
+        path:'volunteerHome',
+        element:<VolunteerHome></VolunteerHome>
+      },       
+
+      {
+       path:'all-blood-donation',
+       element:<VolunteerBloodRequest></VolunteerBloodRequest>
+      },
+
+      {
+        path:'content-managemen',
+        element:<VolunteerContent></VolunteerContent>
+      },
+        
+
         {
           path:'profile',
           element:<Profile></Profile>,
