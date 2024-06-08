@@ -3,11 +3,14 @@ import JoditEditor from "jodit-react";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useRef, useState } from "react";
 
+import Swal from "sweetalert2";
+
 
 
 const Blog = () => {
   const axiosCommon= useAxiosCommon();
   const editor = useRef(null);
+ 
 	const [content, setContent] = useState('');
 
 
@@ -38,6 +41,15 @@ const Blog = () => {
               status:'draft'
 
             } );
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
+
+          
            
             console.log('User information updated:', response.data);
     }
