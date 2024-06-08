@@ -24,6 +24,7 @@ import ContentManagement from "../Pages/Deshboard/Admin/ContentManagement";
 import VolunteerHome from "../Pages/Deshboard/Volunteer/VolunteerHome";
 import VolunteerBloodRequest from "../Pages/Deshboard/Volunteer/VolunteerBloodRequest";
 import VolunteerContent from "../Pages/Deshboard/Volunteer/VolunteerContent";
+import SearchPage from "../Pages/SearchPage/SearchPage";
 
 
 
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
           path:'/blog',
           element:<Blog></Blog>
         },
+
+        {
+          path:'/searchPage',
+          element:<SearchPage></SearchPage>
+        }, 
        
         {
           path:'/donationRequest',
@@ -64,6 +70,8 @@ export const router = createBrowserRouter([
     path:'/register',
     element:<Register></Register>
    },
+
+  
    
    {
       path:'/openModal',
