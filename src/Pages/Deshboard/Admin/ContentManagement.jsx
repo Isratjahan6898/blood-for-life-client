@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import usePagination from "../../../hooks/usePagination";
+import Pagination from '@mui/material/Pagination';
 
 
 
 const ContentManagement = () => {
     const queryClient = new QueryClient();
     const axiosCommon= useAxiosCommon();
+    const itemsPerPage = 5;
    
     const { data: blogsData = [], isLoading, refetch} = useQuery({
         queryKey: ['blogs'],
@@ -25,6 +28,21 @@ const ContentManagement = () => {
           }
         },
       });
+
+      const {
+        currentPage,
+        totalPages,
+        startIndex,
+        endIndex,
+        setPage
+      } = usePagination(blogsData.length, itemsPerPage);
+
+      const currentItems = blogsData.slice(startIndex, endIndex + 1);
+
+      const handleChange = (event, value) => {
+        setPage(value);
+      };
+
 
       
   const handleDelete = blog => {
@@ -102,7 +120,7 @@ const ContentManagement = () => {
           <tbody>
 
             {
-              blogsData.map(blog =>
+              currentItems.map(blog =>
 
                 <tr key={blog._id} className="bg-base-200">
                   <th>{blog.title}</th>
@@ -146,6 +164,16 @@ const ContentManagement = () => {
     </div>
 
         </div>
+
+        <div className="flex justify-center mb-[60px] mt-4">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handleChange}
+          variant="outlined"
+          color="primary"
+        />
+      </div>
        </div>
     );
 };

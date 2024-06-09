@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../Pages/Deshboard/Sidebar/Sidebar";
 
 
+
 const Deshboard = () => {
     return (
         <div>
@@ -11,6 +12,7 @@ const Deshboard = () => {
             </div>
 
             <div className="flex-1 md:ml-80">
+                
                 <div>
                 <Outlet></Outlet>
                 </div>

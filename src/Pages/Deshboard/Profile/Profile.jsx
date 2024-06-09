@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
-import axios from "axios";
+
 
 
 const Profile = () => {
@@ -51,29 +51,12 @@ const Profile = () => {
         .then(data=> setUpazilas(data))
     },[])
 
-    const handleUpdate=async e =>{
-        e.preventDefault();
-        try {
-            const formData = new FormData(e.target);
-            const { data } = await axios.post(`https://api.imgbb.com/1/upload/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData);
-            const imageUrl = data.data.url;
-            formData.delete('image'); // Remove the image field before updating the user's profile
-            formData.append('image', imageUrl); // Replace it with the image URL
-            await axiosCommon.put(`/users/${user?.email}`, formData);
-            refetch(); // Refresh user data after update
-            setEditMode(false); // Exit edit mode after saving
-        } 
-        
-        catch (error) {
-            console.error('Error updating user profile:', error);
-        }
-    }
+  
     return (
-        <div>
-            <div className="text-center my-[50px] text-red-600 text-4xl font-bold">Update profile</div>
-
+       <div>
+         <div className="text-center my-[50px] text-red-600 text-4xl font-bold">Update profile</div>
             <div className="my-[60px]">
-                <form onSubmit={handleUpdate} className='space-y-6 ng-untouched ng-pristine ng-valid'>
+                <form  className='space-y-6 ng-untouched ng-pristine ng-valid'>
                     <div className='space-y-4'>
                         <div>
                             <label htmlFor='name' className='block mb-2 text-sm'>Name</label>
@@ -81,7 +64,7 @@ const Profile = () => {
                         </div>
                         <div>
                             <label htmlFor='image' className='block mb-2 text-sm'>Select Image:</label>
-                            <input required type='file' id='image' name='image' accept='image/*' />
+                            <input required type='file' id='image' name='image' accept='image/*' readOnly={!editMode} />
                         </div>
                         <div>
                             <label htmlFor='email' className='block mb-2 text-sm'>Email address</label>
@@ -89,7 +72,7 @@ const Profile = () => {
                         </div>
                         <div>
                             <label htmlFor='bloodGroup' className='block mb-2 text-sm'>Blood Group</label>
-                            <select name='bloodGroup' id='bloodGroup' defaultValue={userData.bloodGroup} className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900' >
+                            <select name='bloodGroup' id='bloodGroup' defaultValue={userData.bloodGroup} className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900' readOnly={!editMode}>
                                 <option value='A+'>A+</option>
                                 <option value='A-'>A-</option>
                                 <option value='B+'>B+</option>
@@ -102,7 +85,7 @@ const Profile = () => {
                         </div>
                         <div>
                             <label htmlFor='district' className='block mb-2 text-sm'>District</label>
-                            <select name='district' id='district' defaultValue={userData.district} className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'  disabled={!editMode}>
+                            <select name='district' id='district' defaultValue={userData.district} className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900' readOnly={!editMode}>
                                 {districts.map(district => (
                                     <option key={district.id} value={district.name}>{district.name}</option>
                                 ))}
@@ -110,7 +93,7 @@ const Profile = () => {
                         </div>
                         <div>
                             <label htmlFor='upazila' className='block mb-2 text-sm'>Upazila</label>
-                            <select name='upazila' id='upazila' defaultValue={userData.upazila} className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900' disabled={!editMode}>
+                            <select name='upazila' id='upazila' defaultValue={userData.upazila} className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900' readOnly={!editMode}>
                                 {upazilas.map(upazila => (
                                     <option key={upazila.id} value={upazila.name}>{upazila.name}</option>
                                 ))}
@@ -122,12 +105,11 @@ const Profile = () => {
                             <button type='submit' className='bg-rose-500 w-full rounded-md py-3 text-white'>Save</button>
                         ) : (
                             <button type='button' onClick={() => setEditMode(true)} className='bg-rose-500 w-full rounded-md py-3 text-white'> Edit</button>
-                        )
-                    }
+                        )}
                     </div>
-  </form>
-                    </div>
-        </div>
+                </form>
+            </div>
+       </div>
     );
 };
 

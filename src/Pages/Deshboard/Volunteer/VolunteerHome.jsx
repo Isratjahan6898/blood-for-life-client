@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const VolunteerHome = () => {
@@ -7,6 +8,7 @@ const VolunteerHome = () => {
     const {user}= useAuth();
     
     const axiosCommon = useAxiosCommon();
+    const axiosSecure= useAxiosSecure();
 
     
 
@@ -16,7 +18,7 @@ const VolunteerHome = () => {
        
     
           try {
-            const { data } = await axiosCommon.get(`/user`);
+            const { data } = await axiosSecure.get(`/user`);
             console.log('Received data:', data);  // Log received data
             return data;
           } catch (error) {
@@ -33,7 +35,7 @@ const VolunteerHome = () => {
        
     
           try {
-            const { data } = await axiosCommon.get(`/blood`);
+            const { data } = await axiosSecure.get(`/blood`);
             console.log('Received data:', data);  // Log received data
             return data;
           } catch (error) {
@@ -43,7 +45,23 @@ const VolunteerHome = () => {
         },
       });
       
-      console.log(bloodData);
+      const { data: users= []} = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+       
+    
+          try {
+            const { data } = await axiosCommon.get(`/payment`);
+            console.log('Received data:', data);  // Log received data
+            return data;
+          } catch (error) {
+            console.error('Error fetching donation data:', error);
+            return [];
+          }
+        },
+      });
+      const totalPrice = users.reduce((sum, user) => sum + parseFloat(user.price), 0);
+
 
 
 
@@ -69,7 +87,7 @@ const VolunteerHome = () => {
   
   <div className="stat place-items-center">
     <div className="stat-title">Total Funding</div>
-    <div className="stat-value text-secondary">4,200</div>
+    <div className="stat-value text-secondary">${totalPrice}</div>
     
   </div>
   

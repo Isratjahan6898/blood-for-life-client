@@ -13,6 +13,8 @@ import useRole from '../../../hooks/useRole'
 import HostMenu from './HostMenu/HostMenu'
 import AdminMenu from './AdminMenu/AdminMenu'
 import Volunteer from './Volunteer/Volunteer'
+import useAdmin from '../../../hooks/useAdmin'
+
 
 
 
@@ -23,6 +25,9 @@ const Sidebar = () => {
     const [role]= useRole();
     console.log(role);
     const navigate = useNavigate();
+
+    const[isAdmin]=useAdmin();
+
 
     const handleLogOut = ()=>{
       logOut()
@@ -81,8 +86,8 @@ const Sidebar = () => {
 
 
             {role==='doner' && <HostMenu></HostMenu>}
-            {role==='volunteer' && <Volunteer></Volunteer>}
-            {role==='admin' && <AdminMenu></AdminMenu>}
+            {role==='volunteer'&& <Volunteer></Volunteer>}
+            {isAdmin && <AdminMenu></AdminMenu>}
 
               
             </nav>

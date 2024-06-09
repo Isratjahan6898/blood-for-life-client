@@ -13,7 +13,7 @@ import DonationRequest from "../Pages/DonationRequest/DonationRequest";
 
 import ViewDetails from "../Pages/ViewDetails/ViewDetails";
 import UpdateData from "../Pages/Deshboard/Doner/UpdateData";
-import Modal from "../Pages/Modal/Modal";
+
 import Profile from "../Pages/Deshboard/Profile/Profile";
 import AllUser from "../Pages/Deshboard/Admin/AllUser";
 import AdminHome from "../Pages/Deshboard/Admin/AdminHome";
@@ -25,6 +25,12 @@ import VolunteerHome from "../Pages/Deshboard/Volunteer/VolunteerHome";
 import VolunteerBloodRequest from "../Pages/Deshboard/Volunteer/VolunteerBloodRequest";
 import VolunteerContent from "../Pages/Deshboard/Volunteer/VolunteerContent";
 import SearchPage from "../Pages/SearchPage/SearchPage";
+import PrivateRoutes from "./PrivateRoutes";
+import AdminRoutes from "./AdminRoutes";
+import VolunteerRoute from "./VolunteerRoute";
+import Funding from "../Pages/Funding/Funding";
+import Payment from "../Pages/Funding/Payment";
+
 
 
 
@@ -54,14 +60,23 @@ export const router = createBrowserRouter([
         },
         {
           path:'/viewDetails/:id',
-          element:<ViewDetails></ViewDetails>,
+          element:<PrivateRoutes><ViewDetails></ViewDetails></PrivateRoutes>,
           loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/blood/${params.id}`)
 
+        },
+
+        {
+          path:'/funding',
+       element:<Funding></Funding>
         }
+       
       ]},
 
    
-
+  //  {
+  //       path:'/funding',
+  //       element:<Funding></Funding>
+  //  },
    {
     path:'/login',
     element:<Login></Login>
@@ -74,13 +89,15 @@ export const router = createBrowserRouter([
   
    
    {
-      path:'/openModal',
-      element:<Modal></Modal>
+      path:'/payment',
+      element:<Payment></Payment>
    },
    
    {
        path:'/deshboard',
-       element:<Deshboard></Deshboard>,
+       element:<PrivateRoutes>
+        <Deshboard></Deshboard>
+        </PrivateRoutes>,
        children:[
         {
              //doner
@@ -107,42 +124,74 @@ export const router = createBrowserRouter([
          //admin
         {
           path:'allUser',
-          element:<AllUser></AllUser>
+          element:<PrivateRoutes>
+            <AdminRoutes>
+              <AllUser></AllUser>
+              </AdminRoutes>
+          </PrivateRoutes>
         },
 
         {
           path:'adminHome',
-          element:<AdminHome></AdminHome>
+          element:<PrivateRoutes>
+            <AdminRoutes>
+            <AdminHome></AdminHome>
+            </AdminRoutes>
+          </PrivateRoutes>
         },
         {
           path:'createDonation',
-          element:<BloodRequest></BloodRequest>
+          element:<PrivateRoutes>
+            <AdminRoutes>
+            <BloodRequest></BloodRequest>
+            </AdminRoutes>
+          </PrivateRoutes>
         },
         {
           path:'adminUpdate/:id',
-          element:<UpdateAdmin></UpdateAdmin>,
+          element:<PrivateRoutes>
+            <AdminRoutes>
+            <UpdateAdmin></UpdateAdmin>
+            </AdminRoutes>
+          </PrivateRoutes>,
           loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/blood/${params.id}`)
         },
 
         {
           path:'content-management',
-          element:<ContentManagement></ContentManagement>
+          element:<PrivateRoutes>
+            <AdminRoutes>
+            <ContentManagement></ContentManagement>
+            </AdminRoutes>
+          </PrivateRoutes>
         },
 
        
       {
         path:'volunteerHome',
-        element:<VolunteerHome></VolunteerHome>
+        element:<PrivateRoutes>
+          <VolunteerRoute>
+          <VolunteerHome></VolunteerHome>
+          </VolunteerRoute>
+        </PrivateRoutes>
       },       
 
       {
        path:'all-blood-donation',
-       element:<VolunteerBloodRequest></VolunteerBloodRequest>
+       element:<PrivateRoutes>
+        <VolunteerRoute>
+        <VolunteerBloodRequest></VolunteerBloodRequest>
+        </VolunteerRoute>
+       </PrivateRoutes>
       },
 
       {
         path:'content-managemen',
-        element:<VolunteerContent></VolunteerContent>
+        element:<PrivateRoutes>
+          <VolunteerRoute>
+          <VolunteerContent></VolunteerContent>
+          </VolunteerRoute>
+        </PrivateRoutes>
       },
         
 

@@ -43,7 +43,22 @@ const AdminHome = () => {
         },
       });
       
-      console.log(bloodData);
+      const { data: users= []} = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+       
+    
+          try {
+            const { data } = await axiosCommon.get(`/payment`);
+            console.log('Received data:', data);  // Log received data
+            return data;
+          } catch (error) {
+            console.error('Error fetching donation data:', error);
+            return [];
+          }
+        },
+      });
+      const totalPrice = users.reduce((sum, user) => sum + parseFloat(user.price), 0);
 
 
 
@@ -68,7 +83,7 @@ const AdminHome = () => {
   
   <div className="stat place-items-center">
     <div className="stat-title">Total Funding</div>
-    <div className="stat-value text-secondary">4,200</div>
+    <div className="stat-value text-secondary">${totalPrice}</div>
     
   </div>
   

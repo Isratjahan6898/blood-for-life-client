@@ -9,6 +9,8 @@ import { MdOutlineBrowserUpdated } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useQuery} from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import usePagination from "../../../hooks/usePagination";
+import Pagination from '@mui/material/Pagination';
 
 
 
@@ -17,6 +19,7 @@ import { Link } from "react-router-dom";
 
 const MyDonationPage = () => {
   const { user } = useAuth();
+  const itemsPerPage = 6;
   
 
 
@@ -42,6 +45,20 @@ const MyDonationPage = () => {
       }
     },
   });
+
+  const {
+    currentPage,
+    totalPages,
+    startIndex,
+    endIndex,
+    setPage
+  } = usePagination(bloodData.length, itemsPerPage);
+
+  const currentItems = bloodData.slice(startIndex, endIndex + 1);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -110,7 +127,7 @@ return (
           <tbody>
 
             {
-              bloodData.map(blood =>
+              currentItems.map(blood =>
 
                 <tr key={blood._id} className="bg-base-200">
                   <th>{blood.recipientName}</th>
@@ -139,6 +156,15 @@ return (
         </table>
       </div>
     </div>
+    <div className="flex justify-center mb-[60px] mt-4">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handleChange}
+          variant="outlined"
+          color="primary"
+        />
+      </div>
   </div>
 );
 };

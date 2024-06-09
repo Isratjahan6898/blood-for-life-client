@@ -1,13 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
-import { useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import usePagination from "../../../hooks/usePagination";
+import Pagination from '@mui/material/Pagination';
+
+// import { useState } from "react";
 
 
 const AllUser = () => {
 
     const axiosCommon = useAxiosCommon();
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
+    const axiosSecure= useAxiosSecure();
+    const itemsPerPage = 6;
 
 
     const { data: userss= [], isLoading, refetch} = useQuery({
@@ -16,7 +22,7 @@ const AllUser = () => {
      
   
         try {
-          const { data } = await axiosCommon.get(`/user`);
+          const { data } = await axiosSecure.get(`/user`);
           console.log('Received data:', data);  // Log received data
           return data;
         } catch (error) {
@@ -25,35 +31,53 @@ const AllUser = () => {
         }
       },
     });
-    console.log(userss);
+    
+    const {
+      currentPage,
+      totalPages,
+      startIndex,
+      endIndex,
+      setPage
+    } = usePagination(userss.length, itemsPerPage);
+    const currentItems = userss.slice(startIndex, endIndex + 1);
+
+    const handleChange = (event, value) => {
+      setPage(value);
+    };
+
     if (isLoading) {
         return <span className="loading loading-spinner loading-lg"></span>;
     }
 
     const handleRoleChange = (userId, newRole) => {
+      
+
         axiosCommon.put(`api/users/${userId}/role`, { role: newRole })
             .then(response => {
-                setUsers(users.map(user => 
-                    user._id === userId ? { ...user, role: newRole } : user
-                ));
+              refetch();
+                // setUsers(users.map(user => 
+                //     user._id === userId ? { ...user, role: newRole } : user
+                // ));
               
             })
             .catch(error => console.error('Error updating user role:', error));
-            refetch();
+            
     };
 
 
 
     const handleStatusChange = (userId, newStatus) => {
+      console.log(newStatus);
         axiosCommon.put(`api/users/${userId}/status`, { status: newStatus })
             .then(response => {
-                setUsers(users.map(user => 
-                    user._id === userId ? { ...user, status: newStatus } : user
-                ));
+              refetch();
+                // setUsers(users.map(user => 
+                //     user._id === userId ? { ...user, status: newStatus } : user
+                // ));
             })
         
             .catch(error => console.error('Error updating user status:', error));
-            refetch();
+            
     };
 
 
@@ -78,7 +102,7 @@ const AllUser = () => {
     <tbody>
       {/* row 1 */}
      {
-        userss.map(user=> <tr key={user._id}>
+        currentItems.map(user=> <tr key={user._id}>
 
       
        
@@ -133,6 +157,16 @@ const AllUser = () => {
     
   </table>
 </div>
+
+<div className="flex justify-center mb-[60px] mt-4">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handleChange}
+          variant="outlined"
+          color="primary"
+        />
+      </div>
         </div>
     );
 };

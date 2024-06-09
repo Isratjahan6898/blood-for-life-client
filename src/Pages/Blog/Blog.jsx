@@ -60,6 +60,8 @@ const Blog = () => {
   }
     return (
         <div>
+
+          
               <div className="">
             <div className="hero bg-fixed h-[550px] " style={{backgroundImage: 'url(https://i.ibb.co/DLTL3zF/pexels-n-voitkevich-5863400.jpg)'}}>
   <div className="hero-overlay bg-opacity-60"></div>
@@ -76,6 +78,7 @@ Critically Needed</h1>
         </div>
 
         <div className="my-[80px] mx-[50px]">
+        <div className="text-center text-red-500 text-5xl my-[60px] font-bold">Crate Blog</div>
            
 
         <form

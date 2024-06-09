@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
+import usePagination from "../../../hooks/usePagination";
+import Pagination from '@mui/material/Pagination';
 
 
 const VolunteerContent = () => {
 
     const axiosCommon= useAxiosCommon();
+    const itemsPerPage = 6;
    
     const { data: blogsData = [], isLoading} = useQuery({
         queryKey: ['blogs'],
@@ -22,6 +25,20 @@ const VolunteerContent = () => {
           }
         },
       });
+
+      const {
+        currentPage,
+        totalPages,
+        startIndex,
+        endIndex,
+        setPage
+      } = usePagination(blogsData.length, itemsPerPage);
+
+      const currentItems = blogsData.slice(startIndex, endIndex + 1);
+
+      const handleChange = (event, value) => {
+        setPage(value);
+      };
 
       if (isLoading) {
         return <div>Loading...</div>;
@@ -52,7 +69,7 @@ const VolunteerContent = () => {
           <tbody>
 
             {
-              blogsData.map(blog =>
+              currentItems.map(blog =>
 
                 <tr key={blog._id} className="bg-base-200">
                   <th>{blog.title}</th>
@@ -80,6 +97,17 @@ const VolunteerContent = () => {
         </table>
       </div>
             </div> 
+
+            
+   <div className="flex justify-center mb-[60px] mt-4">
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handleChange}
+          variant="outlined"
+          color="primary"
+        />
+      </div>
 
 
 
