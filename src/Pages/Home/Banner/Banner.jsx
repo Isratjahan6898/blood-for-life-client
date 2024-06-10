@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
-        <div className="">
+        <div className="mx-[20px]">
             <div className="hero bg-fixed h-[550px] " style={{backgroundImage: 'url(https://i.ibb.co/xXY5DFm/pexels-kirill-dratsevich-237907001-12227661.jpg)'}}>
   <div className="hero-overlay bg-opacity-60"></div>
   <div className="hero-content text-center text-neutral-content">

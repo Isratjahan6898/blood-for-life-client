@@ -72,7 +72,7 @@ const VolunteerHome = () => {
     return (
         <div>
             <div>
-            <div className="mt-[50px]"> <h1 className="text-center font-bold text-3xl text-red-800">WelCome Admin: {user?.displayName}</h1>
+            <div className="mt-[50px]"> <h1 className="text-center font-bold lg:text-3xl text-red-800">WelCome Admin: {user?.displayName}</h1>
             
             </div>
 

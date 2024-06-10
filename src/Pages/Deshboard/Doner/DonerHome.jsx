@@ -41,7 +41,7 @@ const DonerHome = () => {
 
     return (
         <div className="lg:mx-[60px] mt-[30px]">
-          <h1 className="text-center font-bold text-3xl text-red-800">WelCome Doner: {user?.displayName}</h1>
+          <h1 className="text-center font-bold lg:text-3xl text-red-800">WelCome Doner: {user?.displayName}</h1>
           
 
 
