@@ -1,8 +1,10 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 
 const SearchPage = () => {
+  const axiosCommon= useAxiosCommon();
 
     const [bloodGroup, setBloodGroup] = useState('');
     const [district, setDistrict] = useState('');
@@ -30,7 +32,7 @@ const SearchPage = () => {
   
     const handleSearch = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/donors`, {
+        const response = await axiosCommon.get(`/api/donors`, {
           params: { bloodGroup, district, upazila }
         });
         setDonors(response.data);

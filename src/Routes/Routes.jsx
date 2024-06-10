@@ -30,6 +30,7 @@ import AdminRoutes from "./AdminRoutes";
 import VolunteerRoute from "./VolunteerRoute";
 import Funding from "../Pages/Funding/Funding";
 import Payment from "../Pages/Funding/Payment";
+import BlogFrom from "../Pages/BlogFrom/BlogFrom";
 
 
 
@@ -67,16 +68,13 @@ export const router = createBrowserRouter([
 
         {
           path:'/funding',
-       element:<Funding></Funding>
+       element:<PrivateRoutes><Funding></Funding></PrivateRoutes>
         }
        
       ]},
 
    
-  //  {
-  //       path:'/funding',
-  //       element:<Funding></Funding>
-  //  },
+  
    {
     path:'/login',
     element:<Login></Login>
@@ -97,11 +95,11 @@ export const router = createBrowserRouter([
        path:'/deshboard',
        element:<PrivateRoutes>
         <Deshboard></Deshboard>
+      
         </PrivateRoutes>,
        children:[
         {
-             //doner
-          // index:true,
+            
           path:'donerHome',
           element:<DonerHome></DonerHome>
        },
@@ -200,6 +198,11 @@ export const router = createBrowserRouter([
           element:<Profile></Profile>,
          
         },
+
+        {
+          path:'blogFrom',
+          element:<BlogFrom></BlogFrom>
+        }
        ]
    }
  

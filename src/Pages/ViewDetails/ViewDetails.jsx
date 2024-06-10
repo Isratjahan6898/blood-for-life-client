@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 // import Modal from 'react-modal';
 import { useState } from "react";
-import axios from "axios";
+
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
@@ -32,7 +32,7 @@ const ViewDetails = () => {
       
       const {response} = await axiosCommon.put(`/donation-requests/${_id}/status`, { status: 'inprogress' });
       console.log(response);
-      setRequest(prevRequest => ({ ...prevRequest, status: 'inprogress' }));
+      // setRequest(prevRequest => ({ ...prevRequest, status: 'inprogress' }));
       reset();
       document.getElementById('my_modal_3').close();
     } catch (error) {
