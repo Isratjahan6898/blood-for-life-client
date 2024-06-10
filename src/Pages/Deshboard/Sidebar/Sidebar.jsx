@@ -20,7 +20,8 @@ import useAdmin from '../../../hooks/useAdmin'
 
 
 const Sidebar = () => {
-    const { logOut } = useAuth()
+    const {user, logOut } = useAuth()
+    console.log(user);
     const [isActive, setActive] = useState(false);
     const [role]= useRole();
     console.log(role);
@@ -73,6 +74,12 @@ const Sidebar = () => {
 
 <Link to='/'><h1 className=" font-extrabold hidden md:block text-red-900 font-lato italic text-4xl">Blood4Life</h1></Link>
             </div>
+
+            {/* <div >
+              <h1>{user.displayName
+              }</h1>
+
+            </div> */}
           </div>
 
           {/* Nav Items */}
@@ -82,6 +89,19 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Home */}
+              {/* <div>
+              <h1>{user?.dispalyName}</h1>
+
+            </div>  */}
+
+            
+            <div className='flex flex-col justify-center items-center '>
+              <h1 className='text-center font-bold text-2xl mb-[20px]'>{user.displayName
+              }</h1>
+
+              <img src={user.
+photoURL} alt=""  className='w-[70px] h-[70px] rounded-full'/>
+              </div>
 
 
 

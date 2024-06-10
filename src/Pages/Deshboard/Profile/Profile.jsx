@@ -9,7 +9,7 @@ const Profile = () => {
     const axiosCommon= useAxiosCommon();
     const { user } = useAuth();
 
-    const { data: userData = [],  refetch} = useQuery({
+    const { data: userData = []} = useQuery({
         queryKey: ['user', user?.email],
         queryFn: async () => {
           if (!user?.email) {
