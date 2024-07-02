@@ -9,34 +9,32 @@ Welcome to the Donation Platform, an intuitive and secure way to manage and trac
 ## Live Site URL
 [Donation Platform Live Site](https://blood-donetion.web.app/)
 
+## Overview
+
+This Donation Platform, developed by Israt Jahan, is designed to streamline the process of managing and tracking donations. The platform ensures secure payment processing, real-time data updates, and an efficient admin dashboard to oversee donations and users. It is built with modern web technologies to provide a responsive and user-friendly experience.
+
 ## Features
 
-1. **User-Friendly Interface**:
-   - Simple and intuitive design for easy navigation and usage.
-   
-2. **Secure Donations**:
+1. **Secure Donations**:
    - Integrated with Stripe for secure payment processing.
 
-3. **Admin Dashboard**:
+2. **Admin Dashboard**:
    - Comprehensive dashboard for admins to manage donations and users.
 
-4. **Real-Time Data**:
+3. **Real-Time Data**:
    - Real-time updates of donation data to keep you informed.
 
-5. **Detailed Records**:
-   - Detailed records of each donation including donor name, amount, and date.
+## Technologies Used
 
-6. **Total Donations**:
-   - Automatic calculation and display of total donations received.
+- **Front-End**: React, HTML, CSS, Tailwind
+- **Back-End**: Node.js, Express.js
+- **Payment Processing**: Stripe
 
-7. **Responsive Design**:
-   - Fully responsive design that works on desktops, tablets, and mobile devices.
+## Setup Instructions
 
-8. **Authentication**:
-   - Secure authentication for admin users to access the dashboard.
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-9. **Easy Integration**:
-   - Easy integration with your existing systems and processes.
-
-10. **Comprehensive Documentation**:
-    - Detailed documentation to help you get started quickly.
+For more detailed setup instructions, please refer to the comprehensive documentation included in the repository.
